@@ -9,20 +9,9 @@ use Illuminate\Support\Str; // Importer la classe Str si utilises la version ave
 class FaitController extends Controller
 {
     /**
-     * Affiche un fait aléatoire sur la page d'accueil.
-     */
-    public function index() {
-        $faitAleatoire = Fait::inRandomOrder()->first();
-
-        return view('index', [
-            "fait" => $faitAleatoire
-        ]);
-    }
-
-    /**
      * Affiche la liste de tous les faits.
      */
-    public function list() {
+    public function index() {
         // Version avec une variable... mais Éric n'ai pas ;)
         // $faits = Fait::all()->map(function ($fait) {
         //     $fait->fait = Str::limit($fait->fait, 60);
@@ -30,7 +19,7 @@ class FaitController extends Controller
         // });
 
         $faits = Fait::all();
-    
+
         return view('faits.index', [
             'faits' => $faits
         ]);
@@ -55,10 +44,10 @@ class FaitController extends Controller
         ], [
             'fait.required' => 'Le fait est requis'
         ]);
-    
+
         // Créer le nouveau fait
         Fait::create($valides);
-    
+
         // Rediriger vers la liste des faits avec un message de succès
         return redirect('/faits')->with('success', 'Le fait a été ajouté avec succès!');
     }
@@ -78,9 +67,9 @@ class FaitController extends Controller
     public function destroy(Request $request) {
         $fait = Fait::findOrFail($request->id);
         $fait->delete();
-    
+
         return redirect()
-                ->route('faits.list')
+                ->route('faits.index')
                 ->with('success', 'Le fait a été supprimé !');
     }
 
@@ -92,7 +81,7 @@ class FaitController extends Controller
 
     /**
      * Affiche le formulaire de modification d'un fait.
-     * 
+     *
      * @param int $id
      */
     public function edit(int $id) {
@@ -101,7 +90,7 @@ class FaitController extends Controller
         ]);
     }
 
-    
+
     /**
      * Traite la modification d'un fait.
      *

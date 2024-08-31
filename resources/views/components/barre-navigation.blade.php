@@ -5,7 +5,7 @@
         </a>
         <nav>
             <a href="{{ route('index') }}" class="mx-2 hover:text-gray-300">Accueil</a>
-            <a href="{{ route('faits.list') }}" class="mx-2 hover:text-gray-300">Tous les faits</a>
+            <a href="{{ route('faits.index') }}" class="mx-2 hover:text-gray-300">Tous les faits</a>
             <a href="{{ route('faits.create') }}" class="mx-2 hover:text-gray-300">Ajouter un fait</a>
         </nav>
     </div>
