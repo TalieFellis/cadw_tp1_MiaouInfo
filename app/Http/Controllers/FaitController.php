@@ -11,33 +11,27 @@ class FaitController extends Controller
     /**
      * Affiche la liste de tous les faits.
      */
-    public function index() {
-        // Version avec une variable... mais Éric n'ai pas ;)
-        // $faits = Fait::all()->map(function ($fait) {
-        //     $fait->fait = Str::limit($fait->fait, 60);
-        //     return $fait;
-        // });
-
-        $faits = Fait::all();
-
+    public function index()
+    {
         return view('faits.index', [
-            'faits' => $faits
+            'faits' => Fait::all()
         ]);
     }
 
     /**
      * Affiche le formulaire d'ajout d'un fait.
      */
-    public function create() {
+    public function create()
+    {
         return view('faits.create');
     }
 
     /**
      * Traite l'ajout d'un fait.
-     *
      * @param Request $request
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         // Validation
         $valides = $request->validate([
             'fait' => 'required'
@@ -54,48 +48,13 @@ class FaitController extends Controller
 
     /**
      * Traite la suppression d'un fait.
-     *
      * @param Request $request
      */
-    // public function destroy(int $id) {
-    //     $fait = Fait::findOrFail($id);
-    //     $fait->delete();
-
-    //     return redirect('/faits')->with('success', 'Le fait a été supprimé avec succès!');
-    // }
-
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+    {
         $fait = Fait::findOrFail($request->id);
-        $fait->delete();
+        Fait::destroy($fait->id);
 
-        return redirect()
-                ->route('faits.index')
-                ->with('success', 'Le fait a été supprimé !');
+        return redirect()->route('faits.index')->with('success', 'Le fait a été supprimé !');
     }
-
-
-
-    /*************************************************/
-    /*********** ÇA MARCHE PAS PANTOUTE *************/
-    /************************************************/
-
-    /**
-     * Affiche le formulaire de modification d'un fait.
-     *
-     * @param int $id
-     */
-    public function edit(int $id) {
-        return view('faits.edit', [
-            "fait" => Fait::findOrFail($id)
-        ]);
-    }
-
-
-    /**
-     * Traite la modification d'un fait.
-     *
-     * @param Request $request
-     */
-
-
 }

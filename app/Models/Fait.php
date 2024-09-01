@@ -14,7 +14,8 @@ class Fait extends Model
     protected $fillable = ['fait'];
 
     // Accesseur pour limiter le texte aux 60 premiers caractères
-    public function getCourtFaitAttribute() {
+    public function getCourtFaitAttribute()
+    {
         return Str::limit($this->fait, 60);
     }
 }
