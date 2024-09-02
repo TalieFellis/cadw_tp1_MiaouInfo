@@ -3,13 +3,12 @@
     <div class="container text-center w-full">
 
         <section class="h-[70vh] flex flex-col justify-center p-4 mb-12 rounded-lg bg-custom-white">
-            <h1 class="text-5xl font-extrabold font-dm mx-auto lg:w-[600px]">Des faits félins qui vous feront ronronner!
-            </h1>
+            <h1 class="text-5xl font-extrabold font-dm mx-auto lg:w-[600px]">Des faits félins qui vous feront ronronner!</h1>
 
             <!-- Liens vers la liste et la création de faits -->
             <div class="flex flex-col space-y-2 mt-12 md:flex-row md:space-y-0 md:justify-center md:space-x-2">
-                <a href="{{ route('faits.index') }}" class="px-6 py-3 bg-custom-blue text-custom-white font-bold rounded-lg hover:shadow-xl">Voir tous les faits</a>
-                <a href="{{ route('faits.create') }}" class="px-6 py-3 bg-custom-blue text-custom-white font-bold rounded-lg hover:shadow-xl">Ajouter un fait</a>
+                <a href="{{ route('faits.index') }}" class="transition ease-linear delay-50 px-6 py-3 bg-custom-blue text-custom-white font-bold rounded-lg hover:shadow-lg hover:shadow-slate-400">Voir tous les faits</a>
+                <a href="{{ route('faits.create') }}" class="transition ease-linear delay-50 px-6 py-3 bg-custom-blue text-custom-white font-bold rounded-lg hover:shadow-lg hover:shadow-slate-400">Ajouter un fait</a>
             </div>
         </section>
 

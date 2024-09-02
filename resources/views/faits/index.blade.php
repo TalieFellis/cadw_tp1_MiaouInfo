@@ -5,14 +5,15 @@
 <x-layout :titre="'Liste des faits félins | MiaouInfo'">
 
     <!-- Affichage de la liste des faits -->
-    
+
     @if($faits->isEmpty())
     <h2>Aucun fait à afficher</h2>
-    
+
     @else
-    <section class="py-12 bg-gray-900">
-        <h1 class="text-5xl text-gray-100 font-bold mb-8 text-center">Liste des citations</h1>
-        <div class="flex flex-wrap justify-center">
+    <section class="flex flex-col justify-center p-4 py-12 mb-12 rounded-lg bg-custom-white">
+        <h1 class="text-5xl font-extrabold font-dm mx-auto mb-12 lg:w-[600px] text-center">Liste des faits</h1>
+
+        <div class="grid gap-4 md:grid-cols-3">
             @foreach($faits as $fait)
                 <!-- Inclut le composant fait-card -->
                 <x-faits.fait-card
