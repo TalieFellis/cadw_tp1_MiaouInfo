@@ -57,4 +57,10 @@ class FaitController extends Controller
 
         return redirect()->route('faits.index')->with('success', 'Le fait a été supprimé !');
     }
+
+    public function edit(int $id) {
+        return view('faits.edit', [
+            "fait" => Fait::findOrFail($id),
+        ]);
+    }
 }
