@@ -18,7 +18,7 @@
     <x-barre-navigation />
 
     <!-- Contenu principal injecter dans le slot -->
-    <main class="container mx-auto px-4 py-24">
+    <main class="container mx-auto px-4 py-12">
         {{ $slot }}
     </main>
 

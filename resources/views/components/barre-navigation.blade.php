@@ -1,6 +1,6 @@
 <header class="bg-custom-blue text-white p-4">
     <div class="container mx-auto flex justify-center items-center md:justify-between">
-        <a href="{{ route('index') }}" class="text-3xl font-bold">
+        <a href="{{ route('index') }}" class="text-3xl font-normal font-dm">
             MiaouInfo😽
         </a>
         <nav class="hidden md:block">
