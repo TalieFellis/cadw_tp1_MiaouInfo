@@ -13,7 +13,7 @@
     <section class="flex flex-col justify-center p-4 py-12 mb-12 rounded-lg bg-custom-white">
         <h1 class="text-5xl font-extrabold font-dm mx-auto mb-12 lg:w-[600px] text-center">Liste des faits</h1>
 
-        <div class="grid gap-4 md:grid-cols-3">
+        <div class="grid gap-4 lg:grid-cols-3">
             @foreach($faits as $fait)
                 <!-- Inclut le composant fait-card -->
                 <x-faits.fait-card
