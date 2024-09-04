@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Fait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Importer la classe Str si utilises la version avec variable de la méthode 'list' | Supprimer si non
 
 class FaitController extends Controller
 {
@@ -36,14 +35,13 @@ class FaitController extends Controller
         $valides = $request->validate([
             'fait' => 'required'
         ], [
-            'fait.required' => 'Le fait est requis'
+            'fait.required' => 'Ton message est aussi vide qu\'un bol sans croquettes.... Le fait est requis 😿'
         ]);
 
         // Créer le nouveau fait
         Fait::create($valides);
 
-        // Rediriger vers la liste des faits avec un message de succès
-        return redirect('/faits')->with('success', 'Le fait a été ajouté avec succès!');
+        return redirect('/faits')->with('succes', 'Félicitations! Un nouveau fait sur les chats a été ajouté 🐾');
     }
 
     /**
@@ -55,12 +53,42 @@ class FaitController extends Controller
         $fait = Fait::findOrFail($request->id);
         Fait::destroy($fait->id);
 
-        return redirect()->route('faits.index')->with('success', 'Le fait a été supprimé !');
+        return redirect()->route('faits.index')->with('succes', 'Fait supprimé avec succès! Ce secret de chat a été effacé 🐱✨');
     }
 
-    public function edit(int $id) {
+    /**
+     * Affiche le formulaire de modification d'un fait.
+     * @param integer $id
+     */
+    public function edit(int $id)
+    {
         return view('faits.edit', [
             "fait" => Fait::findOrFail($id),
         ]);
+    }
+
+    /**
+     * Traite le formulaire de modification d'un fait.
+     * @param Request $request
+     */
+    public function update(Request $request)
+    {
+        // Validation
+        $valides = $request->validate([
+            "id" => ["required"],
+            "fait" => ["required"],
+        ], [
+            "id.required" => "Oh non, le fait n'existe pas 😿",
+            "fait.required" => "Attention! Tu ne peux pas sauvegarder un texte vide. C'est comme essayer de nourrir un chat avec de l'air 😺",
+        ]);
+
+        $fait = Fait::findOrFail($valides["id"]);
+        $fait->fait = $valides["fait"];
+
+        $fait->save();
+
+        return redirect()
+            ->route('faits.index')
+            ->with('succes', 'Bravo! Le fait a été modifié avec succès 🐾');
     }
 }
